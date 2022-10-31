@@ -36,24 +36,27 @@ class _MyLoginState extends State<MyLogin> {
                 child: Column(
                   children: [
                     Text(
-                      'HELLO AGAIN',
+                      'PENDAFTARAN',
                       style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.white),
+                          fontSize: 19,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.red),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Text(
-                      'Welcome back, you have been missed!',
-                      style: TextStyle(fontSize: 13, color: Colors.white),
-                    )
+                      'PESERTA DIDIK BARU',
+                      style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white),
+                    ),                    
                   ],
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 50,
               ),
               Container(
                 width: 260,
