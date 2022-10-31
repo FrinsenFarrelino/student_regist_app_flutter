@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:student_regist_app/page/form.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({super.key});
@@ -51,7 +54,7 @@ class _MyLoginState extends State<MyLogin> {
                           fontSize: 19,
                           fontWeight: FontWeight.w500,
                           color: Colors.white),
-                    ),                    
+                    ),
                   ],
                 ),
               ),
@@ -70,7 +73,7 @@ class _MyLoginState extends State<MyLogin> {
                   },
                   style: TextStyle(fontSize: 13, color: Colors.white),
                   cursorColor: Colors.red,
-                  decoration: InputDecoration(                  
+                  decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
                       borderRadius: BorderRadius.circular(13),
@@ -112,12 +115,21 @@ class _MyLoginState extends State<MyLogin> {
                   ),
                 ),
               ),
-              SizedBox(height: 25,),
+              SizedBox(
+                height: 25,
+              ),
               SizedBox(
                 width: 260,
                 height: 54,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return MyForm();
+                      }),
+                    );
+                  },
                   child: Text(
                     'Sign in',
                     style: TextStyle(

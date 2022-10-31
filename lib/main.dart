@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:student_regist_app/firebase_options.dart';
+import 'package:student_regist_app/page/form.dart';
 import 'package:student_regist_app/page/login.dart';
 
 void main() {
