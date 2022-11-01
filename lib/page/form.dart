@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_regist_app/components/dropDown.dart';
 import 'package:student_regist_app/components/textfield.dart';
 import 'package:intl/intl.dart';
 
@@ -24,6 +25,12 @@ class _MyFormState extends State<MyForm> {
   final _cobaController = TextEditingController();
   final _kewarganegaraanController = TextEditingController();
   final _alamatController = TextEditingController();
+  final _dusunController = TextEditingController();
+  final _rtController = TextEditingController();
+  final _rwController = TextEditingController();
+  final _codePosTinggalController = TextEditingController();
+  final _noKksController = TextEditingController();
+  final _anakKeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -398,7 +405,265 @@ class _MyFormState extends State<MyForm> {
                           SizedBox(
                             height: 20,
                           ),
-                          MyTextFormField(title: 'Alamat Tinggal', fieldController: _alamatController)
+                          MyTextFormField(title: 'Alamat Tinggal', fieldController: _alamatController),
+                          MyTextFormField(title: 'Dusun', fieldController: _dusunController),
+                          MyTextFormField(title: 'RT', fieldController: _rtController),
+                          MyTextFormField(title: 'RW', fieldController: _rwController),
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(bottom: 4),
+                                  child: Text(
+                                    'Provinsi Tinggal',
+                                    style: TextStyle(
+                                        fontSize: 12, color: Colors.black),
+                                  ),
+                                ),
+                                Container(
+                                  height: 48,
+                                  child: DropdownButtonFormField(
+                                    items: [
+                                      'Proinsi tinggal'
+                                    ].map((items) {
+                                      return DropdownMenuItem(
+                                        value: items.toString(),
+                                        child: Text(
+                                          items.toString(),
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                      );
+                                    }).toList(),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Tidak boleh dikosongkan';
+                                      }
+                                    },
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _jenisTinggal = value;
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      hintText: 'Propinsi Tinggal...',
+                                      hintStyle: TextStyle(fontSize: 12),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 20,),
+                                Container(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(bottom: 4),
+                                        child: Text(
+                                          'Kab./Kota Tinggal',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 48,
+                                        child: DropdownButtonFormField(
+                                          items: [
+                                            'Bersama Orang Tua',
+                                            'Wali',                                            
+                                          ].map((items) {
+                                            return DropdownMenuItem(
+                                              value: items.toString(),
+                                              child: Text(
+                                                items.toString(),
+                                                style: TextStyle(fontSize: 12),
+                                              ),
+                                            );
+                                          }).toList(),
+                                          validator: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Tidak boleh dikosongkan';
+                                            }
+                                          },
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _jenisTinggal = value;
+                                            });
+                                          },
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            hintText: 'Kab./Kota Tinggal...',
+                                            hintStyle: TextStyle(fontSize: 12),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: 20,),
+                                Container(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(bottom: 4),
+                                        child: Text(
+                                          'Kecamatan Tingga;',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 48,
+                                        child: DropdownButtonFormField(
+                                          items: [
+                                            'Bersama Orang Tua',
+                                            'Wali',
+                                          ].map((items) {
+                                            return DropdownMenuItem(
+                                              value: items.toString(),
+                                              child: Text(
+                                                items.toString(),
+                                                style: TextStyle(fontSize: 12),
+                                              ),
+                                            );
+                                          }).toList(),
+                                          validator: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Tidak boleh dikosongkan';
+                                            }
+                                          },
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _jenisTinggal = value;
+                                            });
+                                          },
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            hintText: 'Kecamatan Tingga;...',
+                                            hintStyle: TextStyle(fontSize: 12),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(bottom: 4),
+                                        child: Text(
+                                          'Jenis ',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 48,
+                                        child: DropdownButtonFormField(
+                                          items: [
+                                            'Bersama Orang Tua',
+                                            'Wali',
+                                          ].map((items) {
+                                            return DropdownMenuItem(
+                                              value: items.toString(),
+                                              child: Text(
+                                                items.toString(),
+                                                style: TextStyle(fontSize: 12),
+                                              ),
+                                            );
+                                          }).toList(),
+                                          validator: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Tidak boleh dikosongkan';
+                                            }
+                                          },
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _jenisTinggal = value;
+                                            });
+                                          },
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            hintText: 'Kab./Kota Tinggal...',
+                                            hintStyle: TextStyle(fontSize: 12),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                MyTextFormField(title: 'Kode Pos Tinggal', fieldController: _codePosTinggalController),
+                                Container(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(bottom: 4),
+                                        child: Text(
+                                          'Jenis Transportasi',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 48,
+                                        child: DropdownButtonFormField(
+                                          items: [
+                                            'Bersama Orang Tua',
+                                            'Wali',
+                                          ].map((items) {
+                                            return DropdownMenuItem(
+                                              value: items.toString(),
+                                              child: Text(
+                                                items.toString(),
+                                                style: TextStyle(fontSize: 12),
+                                              ),
+                                            );
+                                          }).toList(),
+                                          validator: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Tidak boleh dikosongkan';
+                                            }
+                                          },
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _jenisTinggal = value;
+                                            });
+                                          },
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            hintText: 'Pilih Jenis Transpottasi...',
+                                            hintStyle: TextStyle(fontSize: 12),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                MyTextFormField(title: 'Nomor KKS', fieldController: _noKKController),                                
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),

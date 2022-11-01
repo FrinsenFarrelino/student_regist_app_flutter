@@ -11,31 +11,31 @@ class MyTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: EdgeInsets.only(bottom: 4),
-            child: Text(
-              '$title',
-              style: TextStyle(fontSize: 12, color: Colors.black),
-            ),
-          ),
-          Container(
-            height: 70,
-            child: TextFormField(
-              controller: fieldController,
-              style: TextStyle(fontSize: 12),
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: '$title...',
-                hintStyle: TextStyle(fontSize: 12),
+      return Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.only(bottom: 4),
+              child: Text(
+                '$title',
+                style: TextStyle(fontSize: 12, color: Colors.black),
               ),
             ),
-          )
-        ],
-      ),
-    );
+            Container(
+              height: 70,
+              child: TextFormField(
+                controller: fieldController,
+                style: TextStyle(fontSize: 12),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: '$title...',
+                  hintStyle: TextStyle(fontSize: 12),
+                ),
+              ),
+            )
+          ],
+        ),
+      );
   }
 }
