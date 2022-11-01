@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_regist_app/components/dropDown.dart';
+import 'package:student_regist_app/components/sosialMediaTextField.dart';
 import 'package:student_regist_app/components/textfield.dart';
 import 'package:intl/intl.dart';
 
@@ -15,6 +16,7 @@ class _MyFormState extends State<MyForm> {
   String? _jenisTinggal;
   String? _agama;
   String? _berkebutuhanKhusus;
+  String? _jurusan;
   final _namaLengkapController = TextEditingController();
   final _namaPanggilanController = TextEditingController();
   final _nisnController = TextEditingController();
@@ -31,6 +33,16 @@ class _MyFormState extends State<MyForm> {
   final _codePosTinggalController = TextEditingController();
   final _noKksController = TextEditingController();
   final _anakKeController = TextEditingController();
+  final _nomorKIPController = TextEditingController();
+  final _namaKIPController = TextEditingController();
+  final _noRekBankController = TextEditingController();
+  final _rekBankAtasNamaController = TextEditingController();
+  final _noHP1Controller = TextEditingController();
+  final _noHP2Controller = TextEditingController();
+  final _emailController = TextEditingController();
+  final _facebookController = TextEditingController();
+  final _instagramController = TextEditingController();
+  final _tweeterController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -405,10 +417,16 @@ class _MyFormState extends State<MyForm> {
                           SizedBox(
                             height: 20,
                           ),
-                          MyTextFormField(title: 'Alamat Tinggal', fieldController: _alamatController),
-                          MyTextFormField(title: 'Dusun', fieldController: _dusunController),
-                          MyTextFormField(title: 'RT', fieldController: _rtController),
-                          MyTextFormField(title: 'RW', fieldController: _rwController),
+                          MyTextFormField(
+                              title: 'Alamat Tinggal',
+                              fieldController: _alamatController),
+                          MyTextFormField(
+                              title: 'Dusun',
+                              fieldController: _dusunController),
+                          MyTextFormField(
+                              title: 'RT', fieldController: _rtController),
+                          MyTextFormField(
+                              title: 'RW', fieldController: _rwController),
                           Container(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -424,9 +442,7 @@ class _MyFormState extends State<MyForm> {
                                 Container(
                                   height: 48,
                                   child: DropdownButtonFormField(
-                                    items: [
-                                      'Proinsi tinggal'
-                                    ].map((items) {
+                                    items: ['Proinsi tinggal'].map((items) {
                                       return DropdownMenuItem(
                                         value: items.toString(),
                                         child: Text(
@@ -452,7 +468,9 @@ class _MyFormState extends State<MyForm> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 20,),
+                                SizedBox(
+                                  height: 20,
+                                ),
                                 Container(
                                   child: Column(
                                     crossAxisAlignment:
@@ -472,7 +490,7 @@ class _MyFormState extends State<MyForm> {
                                         child: DropdownButtonFormField(
                                           items: [
                                             'Bersama Orang Tua',
-                                            'Wali',                                            
+                                            'Wali',
                                           ].map((items) {
                                             return DropdownMenuItem(
                                               value: items.toString(),
@@ -502,7 +520,9 @@ class _MyFormState extends State<MyForm> {
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 20,),
+                                SizedBox(
+                                  height: 20,
+                                ),
                                 Container(
                                   child: Column(
                                     crossAxisAlignment:
@@ -607,7 +627,9 @@ class _MyFormState extends State<MyForm> {
                                 SizedBox(
                                   height: 20,
                                 ),
-                                MyTextFormField(title: 'Kode Pos Tinggal', fieldController: _codePosTinggalController),
+                                MyTextFormField(
+                                    title: 'Kode Pos Tinggal',
+                                    fieldController: _codePosTinggalController),
                                 Container(
                                   child: Column(
                                     crossAxisAlignment:
@@ -649,7 +671,8 @@ class _MyFormState extends State<MyForm> {
                                           },
                                           decoration: InputDecoration(
                                             border: OutlineInputBorder(),
-                                            hintText: 'Pilih Jenis Transpottasi...',
+                                            hintText:
+                                                'Pilih Jenis Transpottasi...',
                                             hintStyle: TextStyle(fontSize: 12),
                                           ),
                                         ),
@@ -660,7 +683,218 @@ class _MyFormState extends State<MyForm> {
                                 SizedBox(
                                   height: 20,
                                 ),
-                                MyTextFormField(title: 'Nomor KKS', fieldController: _noKKController),                                
+                                MyTextFormField(
+                                    title: 'Nomor KKS',
+                                    fieldController: _noKKController),
+                                Container(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        height: 80,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              child: Text(
+                                                'Anak Ke-',
+                                                style: TextStyle(fontSize: 12),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 3,
+                                            ),
+                                            Container(
+                                              height: 63,
+                                              width: 210,
+                                              child: TextFormField(
+                                                controller: _anakKeController,
+                                                decoration: InputDecoration(
+                                                    border:
+                                                        OutlineInputBorder(),
+                                                    hintText: 'Anak Ke-...',
+                                                    hintStyle: TextStyle(
+                                                        fontSize: 12)),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 80,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              child: Text(
+                                                'Fisip KIP',
+                                                style: TextStyle(fontSize: 12),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 3,
+                                            ),
+                                            Container(
+                                              height: 50,
+                                              width: 210,
+                                              child: DropdownButtonFormField(
+                                                items: [
+                                                  'Tidak',
+                                                  'Iya',
+                                                ].map((items) {
+                                                  return DropdownMenuItem(
+                                                    value: items.toString(),
+                                                    child: Text(
+                                                      items.toString(),
+                                                      style: TextStyle(
+                                                          fontSize: 12),
+                                                    ),
+                                                  );
+                                                }).toList(),
+                                                validator: (value) {
+                                                  if (value!.isEmpty) {
+                                                    return 'Tidak boleh dikosongkan';
+                                                  }
+                                                },
+                                                onChanged: (value) {},
+                                                decoration: InputDecoration(
+                                                  border: OutlineInputBorder(),
+                                                  hintText: 'Tidak',
+                                                  hintStyle:
+                                                      TextStyle(fontSize: 12),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                MyTextFormField(
+                                    title: 'Nomor KIP',
+                                    fieldController: _nomorKIPController),
+                                MyTextFormField(
+                                    title: 'Nama KIP',
+                                    fieldController: _namaKIPController),
+                                Container(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(bottom: 4),
+                                        child: Text(
+                                          'Layak PIP',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 48,
+                                        child: DropdownButtonFormField(
+                                          items: [
+                                            'Bersama Orang Tua',
+                                            'Wali',
+                                          ].map((items) {
+                                            return DropdownMenuItem(
+                                              value: items.toString(),
+                                              child: Text(
+                                                items.toString(),
+                                                style: TextStyle(fontSize: 12),
+                                              ),
+                                            );
+                                          }).toList(),
+                                          validator: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Tidak boleh dikosongkan';
+                                            }
+                                          },
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _jenisTinggal = value;
+                                            });
+                                          },
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            hintText:
+                                                'Pilih Alasan Layak PIP...',
+                                            hintStyle: TextStyle(fontSize: 12),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(bottom: 4),
+                                        child: Text(
+                                          'Bank',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 48,
+                                        child: DropdownButtonFormField(
+                                          items: [
+                                            'Bersama Orang Tua',
+                                            'Wali',
+                                          ].map((items) {
+                                            return DropdownMenuItem(
+                                              value: items.toString(),
+                                              child: Text(
+                                                items.toString(),
+                                                style: TextStyle(fontSize: 12),
+                                              ),
+                                            );
+                                          }).toList(),
+                                          validator: (value) {
+                                            if (value!.isEmpty) {
+                                              return 'Tidak boleh dikosongkan';
+                                            }
+                                          },
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _jenisTinggal = value;
+                                            });
+                                          },
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            hintText: '-Pilih Bank-',
+                                            hintStyle: TextStyle(fontSize: 12),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                MyTextFormField(
+                                    title: 'No. Rekening Bank',
+                                    fieldController: _noRekBankController),
+                                MyTextFormField(
+                                    title: 'Rek. Bank Atas Nama',
+                                    fieldController:
+                                        _rekBankAtasNamaController),
                               ],
                             ),
                           ),
@@ -697,14 +931,258 @@ class _MyFormState extends State<MyForm> {
                       padding: EdgeInsets.all(15),
                       child: Column(
                         children: [
-                          MyTextFormField(
-                              title: 'coba', fieldController: _cobaController)
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(bottom: 4),
+                                  child: Text(
+                                    'Foto Pribadi',
+                                    style: TextStyle(
+                                        fontSize: 12, color: Colors.black),
+                                  ),
+                                ),
+                                Container(
+                                    height: 200,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey)),
+                                    child: Center(
+                                      child: IconButton(
+                                        icon: Icon(
+                                          Icons.image_outlined,
+                                          color: Colors.grey,
+                                        ),
+                                        onPressed: () {},
+                                      ),
+                                    )),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     )
                   ],
                 ),
               ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          top: BorderSide(color: Colors.grey),
+                          left: BorderSide(color: Colors.grey),
+                          right: BorderSide(color: Colors.grey),
+                        ),
+                        color: Colors.grey.shade300,
+                      ),
+                      width: double.infinity,
+                      padding: EdgeInsets.all(15),
+                      child: Text('Kontak & Sosial Media'),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        color: Colors.grey.shade200,
+                      ),
+                      padding: EdgeInsets.all(15),
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                MySocialMediaField(
+                                    title: 'Telp. / HP 1',
+                                    controller: _noHP1Controller),
+                                MySocialMediaField(
+                                    title: 'Telp. / HP 2',
+                                    controller: _noHP2Controller),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                MySocialMediaField(
+                                    title: 'Email',
+                                    controller: _emailController),
+                                MySocialMediaField(
+                                    title: 'Facebook',
+                                    controller: _facebookController),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                MySocialMediaField(
+                                    title: 'Instagram',
+                                    controller: _instagramController),
+                                MySocialMediaField(
+                                    title: 'Tweeter',
+                                    controller: _tweeterController),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          top: BorderSide(color: Colors.grey),
+                          left: BorderSide(color: Colors.grey),
+                          right: BorderSide(color: Colors.grey),
+                        ),
+                        color: Colors.grey.shade300,
+                      ),
+                      width: double.infinity,
+                      padding: EdgeInsets.all(15),
+                      child: Text('Jurusan Yang DIpilih'),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        color: Colors.grey.shade200,
+                      ),
+                      padding: EdgeInsets.all(15),
+                      child: Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            child: ListTileTheme(
+                              horizontalTitleGap: 0,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Radio(
+                                          value: 'Pariwisata',
+                                          groupValue: _jurusan,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _jurusan = value.toString();
+                                            });
+                                          },
+                                        ),
+                                        Text(
+                                          'PARIWISATA',
+                                          style: TextStyle(fontSize: 12),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Radio(
+                                          value: 'Perhotelan',
+                                          groupValue: _jurusan,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _jurusan = value.toString();
+                                            });
+                                          },
+                                        ),
+                                        Text(
+                                          'PERHOTELAN',
+                                          style: TextStyle(fontSize: 12),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Radio(
+                                          value: 'Rekayasa Perangkat Lunak',
+                                          groupValue: _jurusan,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _jurusan =
+                                                  value.toString();
+                                            });
+                                          },
+                                        ),
+                                        Text(
+                                          'REKAYASA PERANGKAT LUNAK',
+                                          style: TextStyle(fontSize: 12),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Radio(
+                                          value: 'Tataboga / Kuliner',
+                                          groupValue: _jurusan,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _jurusan = value.toString();
+                                            });
+                                          },
+                                        ),
+                                        Text(
+                                          'TATABOGA / KULINER',
+                                          style: TextStyle(fontSize: 12),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 15,),
+              SizedBox(
+                width: double.infinity,
+                height: 54,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Simpan',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.deepPurple),
+                    shape: MaterialStatePropertyAll(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
