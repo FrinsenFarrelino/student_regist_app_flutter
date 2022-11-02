@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_regist_app/colors/pallet.dart';
 import 'package:student_regist_app/components/dropDown.dart';
 import 'package:student_regist_app/components/sosialMediaTextField.dart';
 import 'package:student_regist_app/components/textfield.dart';
@@ -48,7 +49,7 @@ class _MyFormState extends State<MyForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: MyColor.darkBlue,
         title: Text(
           'Registrasi',
           style: TextStyle(fontSize: 15),

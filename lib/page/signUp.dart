@@ -2,16 +2,15 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:student_regist_app/colors/pallet.dart';
 import 'package:student_regist_app/page/form.dart';
-import 'package:student_regist_app/page/signUp.dart';
 
-class MyLogin extends StatefulWidget {
-  const MyLogin({super.key});
+class MySignUp extends StatefulWidget {
+  const MySignUp({super.key});
 
   @override
-  State<MyLogin> createState() => _MyLoginState();
+  State<MySignUp> createState() => _MySignUpState();
 }
 
-class _MyLoginState extends State<MyLogin> {
+class _MySignUpState extends State<MySignUp> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -39,7 +38,7 @@ class _MyLoginState extends State<MyLogin> {
                       height: 5,
                     ),
                     Text(
-                      'Silahkan masuk dengan akun anda',
+                      'Yuk bikin akun barumu',
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -50,6 +49,29 @@ class _MyLoginState extends State<MyLogin> {
               ),
               SizedBox(
                 height: 50,
+              ),
+              Container(
+                width: 271,
+                height: 40,
+                child: TextFormField(
+                  controller: _emailController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Nama tidak boleh kosong!';
+                    }
+                  },
+                  style: TextStyle(fontSize: 14, color: Colors.black),
+                  cursorColor: MyColor.darkBlue,
+                  decoration: InputDecoration(
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: MyColor.darkBlue)),
+                    hintText: 'Nama',
+                    hintStyle: TextStyle(fontSize: 14),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 17,
               ),
               Container(
                 width: 271,
@@ -186,7 +208,7 @@ class _MyLoginState extends State<MyLogin> {
                   ),
                   onPressed: () {},
                 ),
-              ),
+              ),              
               SizedBox(
                 height: 100,
               ),
@@ -195,7 +217,7 @@ class _MyLoginState extends State<MyLogin> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Tidak punya akun?',
+                      'Sudah punya akun?',
                       style: TextStyle(fontSize: 14),
                     ),
                     SizedBox(
@@ -203,17 +225,10 @@ class _MyLoginState extends State<MyLogin> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return MySignUp();
-                            },
-                          ),
-                        );
+                        Navigator.pop(context);
                       },
                       child: Text(
-                        'Buat sekarang!',
+                        'Masuk',
                         style: TextStyle(fontSize: 14, color: MyColor.darkBlue),
                       ),
                     )
