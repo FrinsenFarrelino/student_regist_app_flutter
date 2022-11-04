@@ -129,7 +129,7 @@ class _MySignUpState extends State<MySignUp> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) {
-                        return MyForm();
+                        return MyDashboard();
                       }),
                     );
                   },

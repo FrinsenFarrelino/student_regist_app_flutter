@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:student_regist_app/firebase_options.dart';
-import 'package:student_regist_app/page/dashboard.dart';
 import 'package:student_regist_app/page/form.dart';
 import 'package:student_regist_app/page/login.dart';
+import 'package:student_regist_app/page/profile.dart';
 import 'package:student_regist_app/page/test.dart';
 
 void main() {
