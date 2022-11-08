@@ -30,11 +30,22 @@ class _MyProfileState extends State<MyProfile> {
                         height: 146,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100)),
-                        child: Icon(
-                          Icons.account_circle,
-                          size: 146,
-                          color: MyColor.shadow,
-                        ),
+                        child: Center(
+                          child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(100), // Image border
+                              child: SizedBox.fromSize(
+                                size: Size.fromRadius(100), // Image radius
+                                child: Image.asset('assets/faruq.jpg',
+                                    fit: BoxFit.cover),
+                              ),
+                            ),
+                        )
+                        // child: Icon(
+                        //   Icons.account_circle,
+                        //   size: 146,
+                        //   color: MyColor.shadow,
+                        // ),
                       ),
                       Container(
                         width: 45,
@@ -305,9 +316,23 @@ class _MyProfileState extends State<MyProfile> {
                     return MyLogin();
                   },),);
                 },
-                child: Text(
-                  'Log out',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.logout_rounded, size: 17,),
+                      SizedBox(
+                        width: 3,
+                      ),
+                      Text(
+                        'Log out',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(MyColor.merah),

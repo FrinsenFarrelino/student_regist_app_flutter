@@ -13,6 +13,7 @@ class MySignUp extends StatefulWidget {
 class _MySignUpState extends State<MySignUp> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _namaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class _MySignUpState extends State<MySignUp> {
                 width: 271,
                 height: 40,
                 child: TextFormField(
-                  controller: _emailController,
+                  controller: _namaController,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'Nama tidak boleh kosong!';

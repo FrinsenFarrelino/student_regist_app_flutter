@@ -20,6 +20,17 @@ class _MyDashboardState extends State<MyDashboard> {
   String? _agama;
   String? _berkebutuhanKhusus;
   String? _jurusan;
+  String? _propinsiTinggal;
+  String? _kotaTinggal;
+  String? _kecamatanTinggal;
+  String? _kelurahanTinggal;
+  String? _jenisTransportasi;
+  String? _kpsOrKph;
+  String? _fisipKip;
+  String? _layakPip;
+  String? _bank;
+  String? _kip;
+  String? _fisikKip;
   final _namaLengkapController = TextEditingController();
   final _namaPanggilanController = TextEditingController();
   final _nisnController = TextEditingController();
@@ -46,6 +57,7 @@ class _MyDashboardState extends State<MyDashboard> {
   final _facebookController = TextEditingController();
   final _instagramController = TextEditingController();
   final _tweeterController = TextEditingController();
+  final _kpsKphController = TextEditingController();
 
   void validation() {
     FormState? form = this.formKey.currentState;
@@ -521,7 +533,7 @@ class _MyDashboardState extends State<MyDashboard> {
                                       },
                                       onChanged: (value) {
                                         setState(() {
-                                          _jenisTinggal = value;
+                                          _propinsiTinggal = value;
                                         });
                                       },
                                       decoration: InputDecoration(
@@ -571,7 +583,7 @@ class _MyDashboardState extends State<MyDashboard> {
                                             },
                                             onChanged: (value) {
                                               setState(() {
-                                                _jenisTinggal = value;
+                                                _kotaTinggal = value;
                                               });
                                             },
                                             decoration: InputDecoration(
@@ -625,7 +637,7 @@ class _MyDashboardState extends State<MyDashboard> {
                                             },
                                             onChanged: (value) {
                                               setState(() {
-                                                _jenisTinggal = value;
+                                                _kecamatanTinggal = value;
                                               });
                                             },
                                             decoration: InputDecoration(
@@ -679,7 +691,7 @@ class _MyDashboardState extends State<MyDashboard> {
                                             },
                                             onChanged: (value) {
                                               setState(() {
-                                                _jenisTinggal = value;
+                                                _kelurahanTinggal = value;
                                               });
                                             },
                                             decoration: InputDecoration(
@@ -737,7 +749,7 @@ class _MyDashboardState extends State<MyDashboard> {
                                             },
                                             onChanged: (value) {
                                               setState(() {
-                                                _jenisTinggal = value;
+                                                _jenisTransportasi = value;
                                               });
                                             },
                                             decoration: InputDecoration(
@@ -803,7 +815,7 @@ class _MyDashboardState extends State<MyDashboard> {
                                             children: [
                                               Container(
                                                 child: Text(
-                                                  'Fisip KIP',
+                                                  'KPS / KPH',
                                                   style:
                                                       TextStyle(fontSize: 12),
                                                 ),
@@ -851,6 +863,127 @@ class _MyDashboardState extends State<MyDashboard> {
                                   ),
                                   SizedBox(
                                     height: 10,
+                                  ),
+                                  MyTextFormField(
+                                      title: 'KIP',
+                                      fieldController: _kpsKphController),
+                                  Container(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          height: 80,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                child: Text(
+                                                  'KPS / KPH',
+                                                  style:
+                                                      TextStyle(fontSize: 12),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 3,
+                                              ),
+                                              Container(
+                                                height: 50,
+                                                width: 210,
+                                                child: DropdownButtonFormField(
+                                                  items: [
+                                                    'Tidak',
+                                                    'Iya',
+                                                  ].map((items) {
+                                                    return DropdownMenuItem(
+                                                      value: items.toString(),
+                                                      child: Text(
+                                                        items.toString(),
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return 'Tidak boleh dikosongkan';
+                                                    }
+                                                  },
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      _kpsOrKph = value;
+                                                    });
+                                                  },
+                                                  decoration: InputDecoration(
+                                                    border:
+                                                        OutlineInputBorder(),
+                                                    hintText: 'Tidak',
+                                                    hintStyle:
+                                                        TextStyle(fontSize: 12),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          height: 80,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                child: Text(
+                                                  'Fisik KIP',
+                                                  style:
+                                                      TextStyle(fontSize: 12),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 3,
+                                              ),
+                                              Container(
+                                                height: 50,
+                                                width: 210,
+                                                child: DropdownButtonFormField(
+                                                  items: [
+                                                    'Tidak',
+                                                    'Iya',
+                                                  ].map((items) {
+                                                    return DropdownMenuItem(
+                                                      value: items.toString(),
+                                                      child: Text(
+                                                        items.toString(),
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return 'Tidak boleh dikosongkan';
+                                                    }
+                                                  },
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      _fisikKip = value;
+                                                    });
+                                                  },
+                                                  decoration: InputDecoration(
+                                                    border:
+                                                        OutlineInputBorder(),
+                                                    hintText: 'Tidak',
+                                                    hintStyle:
+                                                        TextStyle(fontSize: 12),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                   MyTextFormField(
                                       title: 'Nomor KIP',
@@ -1251,12 +1384,21 @@ class _MyDashboardState extends State<MyDashboard> {
                         child: SizedBox(
                           height: 46,
                           child: ElevatedButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Cetak',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
+                            onPressed: () {},                            
+                            child: Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.print_outlined, size: 17,),
+                                  SizedBox(width: 3,),
+                                  Text(
+                                    'Cetak',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             style: ButtonStyle(
@@ -1282,11 +1424,22 @@ class _MyDashboardState extends State<MyDashboard> {
                           height: 46,
                           child: ElevatedButton(
                             onPressed: () {},
-                            child: Text(
-                              'Simpan',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
+                            child: Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.save_outlined, size: 17,),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  Text(
+                                    'Simpan',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             style: ButtonStyle(
