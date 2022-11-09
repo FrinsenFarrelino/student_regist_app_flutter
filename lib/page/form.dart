@@ -1116,8 +1116,7 @@ class _MyFormState extends State<MyForm> {
                                           groupValue: _jurusan,
                                           onChanged: (value) {
                                             setState(() {
-                                              _jurusan =
-                                                  value.toString();
+                                              _jurusan = value.toString();
                                             });
                                           },
                                         ),
@@ -1157,7 +1156,9 @@ class _MyFormState extends State<MyForm> {
                   ],
                 ),
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               SizedBox(
                 width: double.infinity,
                 height: 54,
