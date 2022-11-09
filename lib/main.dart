@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:student_regist_app/firebase_options.dart';
 import 'package:student_regist_app/page/form.dart';
 import 'package:student_regist_app/page/login.dart';
+import 'package:student_regist_app/page/profile.dart';
 import 'package:student_regist_app/page/test.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyLogin(),
+      home: MyDashboard(),
     );
   }
 }

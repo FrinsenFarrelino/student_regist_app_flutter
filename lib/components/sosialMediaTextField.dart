@@ -24,7 +24,7 @@ class MySocialMediaField extends StatelessWidget {
           ),
           Container(
             height: 50,
-            width: 210,
+            width: 200,
             child: TextFormField(
               controller: controller,
               decoration: InputDecoration(
