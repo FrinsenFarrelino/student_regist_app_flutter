@@ -31,10 +31,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 return const Center(
                   child: Text('Something went wrong!'),
                 );
-              } else if (snapshot.hasData) {
+              }
+              if (snapshot.hasData) {
                 return const MyDashboard();
               } else {
-                return AuthPage();
+                return const AuthPage();
               }
             },
           ),

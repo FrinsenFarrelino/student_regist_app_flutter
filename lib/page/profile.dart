@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:student_regist_app/colors/pallet.dart';
 import 'package:student_regist_app/page/auth_page.dart';
+import 'package:student_regist_app/page/splash_screen.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
@@ -314,14 +316,19 @@ class _MyProfileState extends State<MyProfile> {
                 height: 40,
                 width: 271,
                 child: ElevatedButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut();
+                  onPressed: () async {
+                    GoogleSignIn googleSignIn = GoogleSignIn();
+                    if (googleSignIn.currentUser != null) {
+                      await googleSignIn.disconnect();
+                    }
+                    await FirebaseAuth.instance.signOut();
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const AuthPage(),
+                        builder: (context) => const SplashScreen(),
                       ),
                     );
+                    Navigator.pop(context);
                   },
                   child: Container(
                     child: Row(

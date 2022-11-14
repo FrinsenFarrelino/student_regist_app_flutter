@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:student_regist_app/colors/pallet.dart';
 
@@ -33,6 +35,36 @@ class _MySignUpState extends State<MySignUp> {
       return ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message!)));
     }
+  }
+
+  Future<UserCredential> signInGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  Future<UserCredential> signInGoogle2() async {
+    // Create a new provider
+    GoogleAuthProvider googleProvider = GoogleAuthProvider();
+
+    googleProvider
+        .addScope('https://www.googleapis.com/auth/contacts.readonly');
+    googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithPopup(googleProvider);
   }
 
   void validation() {
@@ -217,7 +249,7 @@ class _MySignUpState extends State<MySignUp> {
                         child: const Text(
                           'Daftar',
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -250,8 +282,8 @@ class _MySignUpState extends State<MySignUp> {
                       height: 30,
                     ),
                     Container(
-                      width: 40,
-                      height: 40,
+                      width: 60,
+                      height: 60,
                       decoration: BoxDecoration(
                         color: MyColor.white,
                         borderRadius: BorderRadius.circular(100),
@@ -273,10 +305,27 @@ class _MySignUpState extends State<MySignUp> {
                       child: IconButton(
                         icon: Image.asset(
                           'assets/google.png',
-                          width: 17,
-                          height: 17,
+                          width: 25,
+                          height: 25,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          bool kisweb;
+                          try {
+                            if (Platform.isAndroid) {
+                              kisweb = false;
+                            } else {
+                              kisweb = true;
+                            }
+                          } catch (e) {
+                            kisweb = true;
+                          }
+
+                          if (kisweb) {
+                            signInGoogle2();
+                          } else {
+                            signInGoogle();
+                          }
+                        },
                       ),
                     ),
                     Container(
@@ -288,17 +337,18 @@ class _MySignUpState extends State<MySignUp> {
                         children: [
                           const Text(
                             'Sudah punya akun?',
-                            style: TextStyle(fontSize: 14),
+                            style: TextStyle(fontSize: 18),
                           ),
                           Container(
                             width: 3,
                           ),
                           InkWell(
                             onTap: widget.onClickedSignIn,
-                            child: Text(
+                            child: const Text(
                               'Masuk',
                               style: TextStyle(
-                                  fontSize: 14, color: MyColor.darkBlue),
+                                  fontSize: 18,
+                                  color: Color.fromARGB(255, 0, 65, 119)),
                             ),
                           )
                         ],
