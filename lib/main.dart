@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:student_regist_app/firebase_options.dart';
-import 'package:student_regist_app/page/form.dart';
-import 'package:student_regist_app/page/login.dart';
-import 'package:student_regist_app/page/profile.dart';
-import 'package:student_regist_app/page/test.dart';
+import 'package:student_regist_app/page/splash_screen.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
 }
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,8 +19,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-      home: MyDashboard(),
+      home: const SplashScreen(),
     );
   }
 }

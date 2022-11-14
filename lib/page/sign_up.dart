@@ -3,29 +3,31 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:student_regist_app/colors/pallet.dart';
 
-class MyLogin extends StatefulWidget {
-  final VoidCallback onClickedSignUp;
+class MySignUp extends StatefulWidget {
+  final VoidCallback onClickedSignIn;
 
-  const MyLogin({
+  const MySignUp({
     Key? key,
-    required this.onClickedSignUp,
+    required this.onClickedSignIn,
   }) : super(key: key);
 
   @override
-  State<MyLogin> createState() => _MyLoginState();
+  State<MySignUp> createState() => _MySignUpState();
 }
 
-class _MyLoginState extends State<MyLogin> {
+class _MySignUpState extends State<MySignUp> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _passwordConfirmController = TextEditingController();
+  final _namaController = TextEditingController();
   bool _isObscure = true;
 
-  Future signIn() async {
+  Future signUp() async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
+        password: _passwordConfirmController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
       return ScaffoldMessenger.of(context)
@@ -36,15 +38,15 @@ class _MyLoginState extends State<MyLogin> {
   void validation() {
     FormState? form = formKey.currentState;
     if (form!.validate()) {
-      signIn();
+      signUp();
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: Center(
             child: Container(
               padding: const EdgeInsets.only(top: 30.0, bottom: 30.0),
@@ -56,20 +58,21 @@ class _MyLoginState extends State<MyLogin> {
                     SizedBox(
                       width: 271,
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
+                        children: [
+                          const Text(
                             'Hello,',
                             style: TextStyle(
                                 fontSize: 32,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black),
                           ),
-                          SizedBox(
+                          Container(
                             height: 5,
                           ),
-                          Text(
-                            'Silahkan masuk dengan akun anda',
+                          const Text(
+                            'Yuk bikin akun barumu',
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
@@ -79,7 +82,30 @@ class _MyLoginState extends State<MyLogin> {
                       ),
                     ),
                     Container(
-                      height: 50,
+                      height: 30,
+                    ),
+                    SizedBox(
+                      width: 271,
+                      child: TextFormField(
+                        controller: _namaController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Nama tidak boleh kosong!';
+                          }
+                        },
+                        style:
+                            const TextStyle(fontSize: 14, color: Colors.black),
+                        cursorColor: MyColor.darkBlue,
+                        decoration: InputDecoration(
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: MyColor.darkBlue)),
+                          hintText: 'Nama',
+                          hintStyle: const TextStyle(fontSize: 14),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 17,
                     ),
                     SizedBox(
                       width: 271,
@@ -114,6 +140,8 @@ class _MyLoginState extends State<MyLogin> {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Tolong masukkan password!';
+                          } else if (value.length < 6) {
+                            return 'Masukkan password minimal 6 karakter';
                           }
                         },
                         style:
@@ -144,6 +172,32 @@ class _MyLoginState extends State<MyLogin> {
                     ),
                     SizedBox(
                       width: 271,
+                      child: TextFormField(
+                        obscureText: true,
+                        controller: _passwordConfirmController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Konfirmasi password anda!';
+                          } else if (value != _passwordController.text) {
+                            return 'Password konfirmasi tidak sesuai!';
+                          }
+                        },
+                        style:
+                            const TextStyle(fontSize: 14, color: Colors.black),
+                        cursorColor: MyColor.darkBlue,
+                        decoration: InputDecoration(
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: MyColor.darkBlue)),
+                          hintText: 'Konfirmasi Password',
+                          hintStyle: const TextStyle(fontSize: 14),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 30,
+                    ),
+                    SizedBox(
+                      width: 271,
                       height: 40,
                       child: ElevatedButton(
                         onPressed: () {
@@ -161,7 +215,7 @@ class _MyLoginState extends State<MyLogin> {
                           ),
                         ),
                         child: const Text(
-                          'Sign in',
+                          'Daftar',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -206,13 +260,13 @@ class _MyLoginState extends State<MyLogin> {
                             color: MyColor.shadow,
                             blurRadius: 3,
                             spreadRadius: 1,
-                            offset: Offset(0, 2),
+                            offset: const Offset(0, 2),
                           ),
                           BoxShadow(
                             color: MyColor.white,
                             blurRadius: 3,
                             spreadRadius: 1,
-                            offset: Offset(0, -2),
+                            offset: const Offset(0, -2),
                           )
                         ],
                       ),
@@ -226,27 +280,29 @@ class _MyLoginState extends State<MyLogin> {
                       ),
                     ),
                     Container(
-                      height: 100,
+                      height: 50,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Tidak punya akun?',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                        Container(
-                          width: 3,
-                        ),
-                        InkWell(
-                          onTap: widget.onClickedSignUp,
-                          child: Text(
-                            'Buat sekarang!',
-                            style: TextStyle(
-                                fontSize: 14, color: MyColor.darkBlue),
+                    SizedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Sudah punya akun?',
+                            style: TextStyle(fontSize: 14),
                           ),
-                        )
-                      ],
+                          Container(
+                            width: 3,
+                          ),
+                          InkWell(
+                            onTap: widget.onClickedSignIn,
+                            child: Text(
+                              'Masuk',
+                              style: TextStyle(
+                                  fontSize: 14, color: MyColor.darkBlue),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 ),
