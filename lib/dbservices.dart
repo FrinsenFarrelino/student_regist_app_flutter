@@ -6,7 +6,14 @@ CollectionReference tblUser = FirebaseFirestore.instance.collection('User');
 
 class Database {
   static Stream<QuerySnapshot> getData() {
-    return tblUser.snapshots();
+    return FirebaseFirestore.instance.collection('User').snapshots();
+  }
+
+  static Stream<QuerySnapshot> displayUser(String data) {
+    return FirebaseFirestore.instance
+        .collection('User')
+        .where('email', isEqualTo: data)
+        .snapshots();
   }
 
   static Future<void> tambahData({required User user}) async {

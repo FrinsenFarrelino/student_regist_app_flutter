@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:student_regist_app/colors/pallet.dart';
+import 'package:student_regist_app/page/lupa_password.dart';
 
 class MyLogin extends StatefulWidget {
   final VoidCallback onClickedSignUp;
@@ -172,6 +173,28 @@ class _MyLoginState extends State<MyLogin> {
                       ),
                     ),
                     Container(
+                      height: 20,
+                    ),
+                    InkWell(
+                      child: const Text(
+                        'Lupa Password?',
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Color.fromARGB(255, 0, 65, 119),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return const LupaPassword();
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                    Container(
                       height: 30,
                     ),
                     SizedBox(
@@ -292,6 +315,7 @@ class _MyLoginState extends State<MyLogin> {
                           child: const Text(
                             'Buat sekarang!',
                             style: TextStyle(
+                                decoration: TextDecoration.underline,
                                 fontSize: 18,
                                 color: Color.fromARGB(255, 0, 65, 119)),
                           ),

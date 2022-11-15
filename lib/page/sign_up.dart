@@ -28,9 +28,13 @@ class _MySignUpState extends State<MySignUp> {
   Future signUp() async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordConfirmController.text.trim(),
+        email: _emailController.text,
+        password: _passwordConfirmController.text,
       );
+      await FirebaseAuth.instance.currentUser
+          ?.updateDisplayName(_namaController.text);
+      await FirebaseAuth.instance.currentUser?.updatePhotoURL(
+          'https://firebasestorage.googleapis.com/v0/b/student-registration-app-b356d.appspot.com/o/userImage%2Fblank-profile.png?alt=media&token=80a2d878-6fd5-46c2-8b96-6428c510abd5');
     } on FirebaseAuthException catch (e) {
       return ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message!)));
@@ -232,7 +236,7 @@ class _MySignUpState extends State<MySignUp> {
                       width: 271,
                       height: 40,
                       child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           validation();
                         },
                         style: ButtonStyle(
@@ -308,7 +312,7 @@ class _MySignUpState extends State<MySignUp> {
                           width: 25,
                           height: 25,
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           bool kisweb;
                           try {
                             if (Platform.isAndroid) {
@@ -347,6 +351,7 @@ class _MySignUpState extends State<MySignUp> {
                             child: const Text(
                               'Masuk',
                               style: TextStyle(
+                                  decoration: TextDecoration.underline,
                                   fontSize: 18,
                                   color: Color.fromARGB(255, 0, 65, 119)),
                             ),

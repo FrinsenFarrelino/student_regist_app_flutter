@@ -86,16 +86,16 @@ class _MyDashboardState extends State<MyDashboard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Selamat datang, ${user.email!}',
+                'Hello, ${user.email!}',
                 style: const TextStyle(fontSize: 16),
               ),
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: IconButton(
-                  icon: const Icon(Icons.account_circle),
-                  iconSize: 40,
+                  icon: const Icon(Icons.settings),
+                  iconSize: 30,
                   onPressed: () {
                     Navigator.push(
                       context,
