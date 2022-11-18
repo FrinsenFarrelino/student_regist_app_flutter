@@ -13,6 +13,9 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool isLogin = true;
+
+  @override
   void initState() {
     super.initState();
     Timer(
@@ -33,7 +36,12 @@ class _SplashScreenState extends State<SplashScreen> {
                 );
               }
               if (snapshot.hasData) {
-                return const MyDashboard();
+                if (FirebaseAuth.instance.currentUser?.displayName != null) {
+                  return const MyDashboard();
+                }
+                return MyLogin(onClickedSignUp: () {
+                  isLogin = true;
+                });
               } else {
                 return const AuthPage();
               }

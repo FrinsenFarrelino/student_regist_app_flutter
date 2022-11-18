@@ -86,7 +86,7 @@ class _MyDashboardState extends State<MyDashboard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Hello, ${user.email!}',
+                'Hello, ${user.displayName!}',
                 style: const TextStyle(fontSize: 16),
               ),
               Container(
@@ -174,7 +174,7 @@ class _MyDashboardState extends State<MyDashboard> {
                           ),
                           MyTextFormField(
                             title: 'Nama Panggilan',
-                            fieldController: _namaLengkapController,
+                            fieldController: _namaPanggilanController,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

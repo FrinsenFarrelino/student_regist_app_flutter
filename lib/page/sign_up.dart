@@ -35,6 +35,8 @@ class _MySignUpState extends State<MySignUp> {
           ?.updateDisplayName(_namaController.text);
       await FirebaseAuth.instance.currentUser?.updatePhotoURL(
           'https://firebasestorage.googleapis.com/v0/b/student-registration-app-b356d.appspot.com/o/userImage%2Fblank-profile.png?alt=media&token=80a2d878-6fd5-46c2-8b96-6428c510abd5');
+      await FirebaseAuth.instance.signOut();
+      widget.onClickedSignIn;
     } on FirebaseAuthException catch (e) {
       return ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message!)));
