@@ -57,7 +57,7 @@ class _MyDashboardState extends State<MyDashboard> {
   final _emailController = TextEditingController();
   final _facebookController = TextEditingController();
   final _instagramController = TextEditingController();
-  final _tweeterController = TextEditingController();
+  final _twitterController = TextEditingController();
   final _kpsKphController = TextEditingController();
 
   void validation() {
@@ -1136,21 +1136,29 @@ class _MyDashboardState extends State<MyDashboard> {
                       child: Column(
                         children: [
                           MySocialMediaField(
-                              title: 'Telp. / HP 1',
-                              controller: _noHP1Controller),
+                            title: 'Telp. / HP 1',
+                            controller: _noHP1Controller,
+                          ),
                           MySocialMediaField(
-                              title: 'Telp. / HP 2',
-                              controller: _noHP2Controller),
+                            title: 'Telp. / HP 2',
+                            controller: _noHP2Controller,
+                          ),
                           MySocialMediaField(
-                              title: 'Email', controller: _emailController),
+                            title: 'Email',
+                            controller: _emailController,
+                          ),
                           MySocialMediaField(
-                              title: 'Facebook',
-                              controller: _facebookController),
+                            title: 'Facebook',
+                            controller: _facebookController,
+                          ),
                           MySocialMediaField(
-                              title: 'Instagram',
-                              controller: _instagramController),
+                            title: 'Instagram',
+                            controller: _instagramController,
+                          ),
                           MySocialMediaField(
-                              title: 'Twitter', controller: _tweeterController),
+                            title: 'Twitter',
+                            controller: _twitterController,
+                          ),
                         ],
                       ),
                     )
