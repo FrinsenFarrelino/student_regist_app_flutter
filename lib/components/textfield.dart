@@ -4,38 +4,37 @@ class MyTextFormField extends StatelessWidget {
   final String title;
   final TextEditingController fieldController;
 
-  MyTextFormField({
+  const MyTextFormField({
+    super.key,
     required this.title,
-    required this.fieldController, 
+    required this.fieldController,
   });
 
   @override
   Widget build(BuildContext context) {
-      return Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 4),
-              child: Text(
-                '$title',
-                style: TextStyle(fontSize: 12, color: Colors.black),
-              ),
-            ),
-            Container(
-              height: 70,
-              child: TextFormField(
-                controller: fieldController,
-                style: TextStyle(fontSize: 12),
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: '$title...',
-                  hintStyle: TextStyle(fontSize: 12),
-                ),
-              ),
-            )
-          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(bottom: 4),
+          child: Text(
+            title,
+            style: const TextStyle(fontSize: 12, color: Colors.black),
+          ),
         ),
-      );
+        SizedBox(
+          height: 70,
+          child: TextFormField(
+            controller: fieldController,
+            style: const TextStyle(fontSize: 12),
+            decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              hintText: '$title...',
+              hintStyle: const TextStyle(fontSize: 12),
+            ),
+          ),
+        )
+      ],
+    );
   }
 }

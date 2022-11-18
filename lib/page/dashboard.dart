@@ -81,7 +81,7 @@ class _MyDashboardState extends State<MyDashboard> {
       appBar: AppBar(
         backgroundColor: MyColor.darkBlue,
         title: Padding(
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -126,17 +126,17 @@ class _MyDashboardState extends State<MyDashboard> {
                         Text(
                           'FORM PENDAFTARAN',
                           style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'SISWA BARU SMKTAG',
                           style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'TAHUN AJARAN 2022/2023',
                           style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -154,7 +154,7 @@ class _MyDashboardState extends State<MyDashboard> {
                           left: BorderSide(color: Colors.grey),
                           right: BorderSide(color: Colors.grey),
                         ),
-                        color: Colors.grey.shade300,
+                        color: Colors.grey.shade200,
                       ),
                       width: double.infinity,
                       padding: const EdgeInsets.all(15),
@@ -163,7 +163,7 @@ class _MyDashboardState extends State<MyDashboard> {
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
-                        color: Colors.grey.shade200,
+                        // color: Colors.grey.shade200,
                       ),
                       padding: const EdgeInsets.all(15),
                       child: Column(
@@ -273,7 +273,9 @@ class _MyDashboardState extends State<MyDashboard> {
                                 child: const Text(
                                   'Tanggal Lahir',
                                   style: TextStyle(
-                                      fontSize: 12, color: Colors.black),
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                               SizedBox(
@@ -505,7 +507,7 @@ class _MyDashboardState extends State<MyDashboard> {
                               SizedBox(
                                 height: 48,
                                 child: DropdownButtonFormField(
-                                  items: ['Proinsi tinggal'].map((items) {
+                                  items: ['Provinsi tinggal'].map((items) {
                                     return DropdownMenuItem(
                                       value: items.toString(),
                                       child: Text(
@@ -526,7 +528,7 @@ class _MyDashboardState extends State<MyDashboard> {
                                   },
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
-                                    hintText: 'Propinsi Tinggal...',
+                                    hintText: 'Provinsi Tinggal...',
                                     hintStyle: TextStyle(fontSize: 12),
                                   ),
                                 ),
@@ -754,8 +756,8 @@ class _MyDashboardState extends State<MyDashboard> {
                                           height: 3,
                                         ),
                                         SizedBox(
-                                          height: 63,
-                                          width: 210,
+                                          height: 50,
+                                          width: 150,
                                           child: TextFormField(
                                             controller: _anakKeController,
                                             decoration: const InputDecoration(
@@ -783,7 +785,7 @@ class _MyDashboardState extends State<MyDashboard> {
                                         ),
                                         SizedBox(
                                           height: 50,
-                                          width: 210,
+                                          width: 150,
                                           child: DropdownButtonFormField(
                                             items: [
                                               'Tidak',
@@ -793,8 +795,9 @@ class _MyDashboardState extends State<MyDashboard> {
                                                 value: items.toString(),
                                                 child: Text(
                                                   items.toString(),
-                                                  style:
-                                                      TextStyle(fontSize: 12),
+                                                  style: const TextStyle(
+                                                    fontSize: 12,
+                                                  ),
                                                 ),
                                               );
                                             }).toList(),
@@ -807,8 +810,9 @@ class _MyDashboardState extends State<MyDashboard> {
                                             decoration: const InputDecoration(
                                               border: OutlineInputBorder(),
                                               hintText: 'Tidak',
-                                              hintStyle:
-                                                  TextStyle(fontSize: 12),
+                                              hintStyle: TextStyle(
+                                                fontSize: 12,
+                                              ),
                                             ),
                                           ),
                                         )
@@ -842,7 +846,7 @@ class _MyDashboardState extends State<MyDashboard> {
                                         ),
                                         SizedBox(
                                           height: 50,
-                                          width: 210,
+                                          width: 150,
                                           child: DropdownButtonFormField(
                                             items: [
                                               'Tidak',
@@ -893,7 +897,7 @@ class _MyDashboardState extends State<MyDashboard> {
                                         ),
                                         SizedBox(
                                           height: 50,
-                                          width: 210,
+                                          width: 150,
                                           child: DropdownButtonFormField(
                                             items: [
                                               'Tidak',
@@ -1060,7 +1064,7 @@ class _MyDashboardState extends State<MyDashboard> {
                           left: BorderSide(color: Colors.grey),
                           right: BorderSide(color: Colors.grey),
                         ),
-                        color: Colors.grey.shade300,
+                        color: Colors.grey.shade200,
                       ),
                       width: double.infinity,
                       padding: const EdgeInsets.all(15),
@@ -1069,7 +1073,7 @@ class _MyDashboardState extends State<MyDashboard> {
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
-                        color: Colors.grey.shade200,
+                        // color: Colors.grey.shade200,
                       ),
                       padding: const EdgeInsets.all(15),
                       child: Column(
@@ -1117,7 +1121,7 @@ class _MyDashboardState extends State<MyDashboard> {
                           left: BorderSide(color: Colors.grey),
                           right: BorderSide(color: Colors.grey),
                         ),
-                        color: Colors.grey.shade300,
+                        color: Colors.grey.shade200,
                       ),
                       width: double.infinity,
                       padding: const EdgeInsets.all(15),
@@ -1126,43 +1130,27 @@ class _MyDashboardState extends State<MyDashboard> {
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
-                        color: Colors.grey.shade200,
+                        // color: Colors.grey.shade200,
                       ),
                       padding: const EdgeInsets.all(15),
                       child: Column(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              MySocialMediaField(
-                                  title: 'Telp. / HP 1',
-                                  controller: _noHP1Controller),
-                              MySocialMediaField(
-                                  title: 'Telp. / HP 2',
-                                  controller: _noHP2Controller),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              MySocialMediaField(
-                                  title: 'Email', controller: _emailController),
-                              MySocialMediaField(
-                                  title: 'Facebook',
-                                  controller: _facebookController),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              MySocialMediaField(
-                                  title: 'Instagram',
-                                  controller: _instagramController),
-                              MySocialMediaField(
-                                  title: 'Tweeter',
-                                  controller: _tweeterController),
-                            ],
-                          ),
+                          MySocialMediaField(
+                              title: 'Telp. / HP 1',
+                              controller: _noHP1Controller),
+                          MySocialMediaField(
+                              title: 'Telp. / HP 2',
+                              controller: _noHP2Controller),
+                          MySocialMediaField(
+                              title: 'Email', controller: _emailController),
+                          MySocialMediaField(
+                              title: 'Facebook',
+                              controller: _facebookController),
+                          MySocialMediaField(
+                              title: 'Instagram',
+                              controller: _instagramController),
+                          MySocialMediaField(
+                              title: 'Twitter', controller: _tweeterController),
                         ],
                       ),
                     )
@@ -1180,7 +1168,7 @@ class _MyDashboardState extends State<MyDashboard> {
                           left: BorderSide(color: Colors.grey),
                           right: BorderSide(color: Colors.grey),
                         ),
-                        color: Colors.grey.shade300,
+                        color: Colors.grey.shade200,
                       ),
                       width: double.infinity,
                       padding: const EdgeInsets.all(15),
@@ -1189,7 +1177,7 @@ class _MyDashboardState extends State<MyDashboard> {
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
-                        color: Colors.grey.shade200,
+                        // color: Colors.grey.shade200,
                       ),
                       padding: const EdgeInsets.all(15),
                       child: Column(
@@ -1217,24 +1205,22 @@ class _MyDashboardState extends State<MyDashboard> {
                                       )
                                     ],
                                   ),
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Radio(
-                                          value: 'Perhotelan',
-                                          groupValue: _jurusan,
-                                          onChanged: (value) {
-                                            setState(() {
-                                              _jurusan = value.toString();
-                                            });
-                                          },
-                                        ),
-                                        const Text(
-                                          'PERHOTELAN',
-                                          style: TextStyle(fontSize: 12),
-                                        )
-                                      ],
-                                    ),
+                                  Row(
+                                    children: [
+                                      Radio(
+                                        value: 'Perhotelan',
+                                        groupValue: _jurusan,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            _jurusan = value.toString();
+                                          });
+                                        },
+                                      ),
+                                      const Text(
+                                        'PERHOTELAN',
+                                        style: TextStyle(fontSize: 12),
+                                      )
+                                    ],
                                   ),
                                   Row(
                                     children: [
