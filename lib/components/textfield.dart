@@ -15,22 +15,23 @@ class MyTextFormField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text(
+          title,
+          style: const TextStyle(fontSize: 14, color: Colors.black),
+        ),
         Container(
-          margin: const EdgeInsets.only(bottom: 4),
-          child: Text(
-            title,
-            style: const TextStyle(fontSize: 12, color: Colors.black),
-          ),
+          height: 5,
         ),
         SizedBox(
           height: 70,
           child: TextFormField(
             controller: fieldController,
-            style: const TextStyle(fontSize: 12),
+            style: const TextStyle(
+                fontSize: 14, color: Color.fromARGB(255, 51, 51, 51)),
             decoration: InputDecoration(
               border: const OutlineInputBorder(),
               hintText: '$title...',
-              hintStyle: const TextStyle(fontSize: 12),
+              hintStyle: const TextStyle(fontSize: 14),
             ),
           ),
         )

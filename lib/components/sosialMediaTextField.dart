@@ -19,20 +19,24 @@ class MySocialMediaField extends StatelessWidget {
         children: [
           Text(
             '$title',
-            style: const TextStyle(fontSize: 12),
+            style: const TextStyle(fontSize: 14),
           ),
           Container(
-            height: 3,
+            height: 5,
           ),
           SizedBox(
-            height: 50,
+            height: 60,
             width: 350,
             child: TextFormField(
               controller: controller,
+              style: const TextStyle(
+                fontSize: 14,
+                color: Color.fromARGB(255, 51, 51, 51),
+              ),
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 hintText: '$title',
-                hintStyle: const TextStyle(fontSize: 12),
+                hintStyle: const TextStyle(fontSize: 14),
               ),
             ),
           )

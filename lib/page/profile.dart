@@ -1,13 +1,10 @@
 import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:student_regist_app/colors/pallet.dart';
-import 'package:student_regist_app/dbservices.dart';
 import 'package:student_regist_app/page/splash_screen.dart';
 
 class MyProfile extends StatefulWidget {
@@ -19,6 +16,7 @@ class MyProfile extends StatefulWidget {
 
 class _MyProfileState extends State<MyProfile> {
   File? file;
+  var pickedImage;
   final user = FirebaseAuth.instance.currentUser!;
   String displayImage = FirebaseAuth.instance.currentUser!.photoURL!;
 
@@ -31,14 +29,24 @@ class _MyProfileState extends State<MyProfile> {
   void pickUpLoadImage() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
 
+    setState(() {
+      pickedImage = image;
+    });
+
     Reference ref =
         FirebaseStorage.instance.ref().child('userImage/${user.email}');
     await ref.putFile(File(image!.path));
     await ref.getDownloadURL().then((value) {
       user.updatePhotoURL(value);
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
           content: Text(
-              'Berhasil mengubah foto profil! Tarik ke bawah untuk refresh halaman')));
+            'Berhasil mengubah foto profil! Tarik ke bawah untuk refresh halaman',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.green,
+        ),
+      );
     });
   }
 
@@ -81,10 +89,15 @@ class _MyProfileState extends State<MyProfile> {
                               child: SizedBox.fromSize(
                                 size:
                                     const Size.fromRadius(100), // Image radius
-                                child: Image.network(
-                                  '$displayImage?t=${DateTime.now().millisecond}',
-                                  fit: BoxFit.cover,
-                                ),
+                                child: pickedImage != null
+                                    ? Image.file(
+                                        File(pickedImage.path),
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Image.network(
+                                        '$displayImage?t=${DateTime.now().millisecond}',
+                                        fit: BoxFit.cover,
+                                      ),
                               ),
                             ),
                           ),
@@ -115,9 +128,9 @@ class _MyProfileState extends State<MyProfile> {
                   height: 30,
                 ),
                 SizedBox(
-                  height: 325,
+                  height: 150,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -146,27 +159,9 @@ class _MyProfileState extends State<MyProfile> {
                               ),
                               Text(
                                 user.displayName!,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
-                              // StreamBuilder<QuerySnapshot>(
-                              //   stream:
-                              //       Database.displayUser(user.email.toString()),
-                              //   builder: (context, snapshot) {
-                              //     if (snapshot.hasError) {
-                              //       return Text('Error');
-                              //     } else if (snapshot.hasData ||
-                              //         snapshot.data != null) {
-                              //       return Text(
-                              //         snapshot.data!.docs[0]['displayName'],
-                              //         style: TextStyle(
-                              //             fontSize: 16,
-                              //             fontWeight: FontWeight.bold),
-                              //       );
-                              //     }
-                              //     return Text('');
-                              //   },
-                              // ),
                             ],
                           )
                         ],
@@ -209,163 +204,8 @@ class _MyProfileState extends State<MyProfile> {
                           )
                         ],
                       ),
-                      Container(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                              width: 40,
-                              height: 40,
-                              child: Icon(
-                                Icons.lock,
-                                size: 40,
-                                color: MyColor.darkBlue,
-                              )),
-                          Container(
-                            width: 15,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Pembayaran PIN pendaftaran',
-                                style: TextStyle(
-                                    fontSize: 13, color: MyColor.shadow),
-                              ),
-                              Container(
-                                height: 5,
-                              ),
-                              Text(
-                                'Sudah upload',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: MyColor.green),
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.image,
-                                    size: 20,
-                                  ),
-                                  Container(
-                                    width: 7,
-                                  ),
-                                  const Text(
-                                    '2423424246.jpg',
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                  Container(
-                                    width: 10,
-                                  ),
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.cancel_outlined,
-                                        size: 20,
-                                      ))
-                                ],
-                              ),
-                              SizedBox(
-                                width: 120,
-                                height: 30,
-                                child: ElevatedButton(
-                                  onPressed: () {},
-                                  style: ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll(
-                                          MyColor.darkBlue),
-                                      foregroundColor: MaterialStatePropertyAll(
-                                          MyColor.white),
-                                      shape: MaterialStatePropertyAll(
-                                          RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(7)))),
-                                  child: const Text(
-                                    'Upload bukti',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      Container(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: 40,
-                            height: 40,
-                            child: Icon(
-                              Icons.article_sharp,
-                              size: 40,
-                              color: MyColor.darkBlue,
-                            ),
-                          ),
-                          Container(
-                            width: 15,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Pembayaran daftar ulang',
-                                style: TextStyle(
-                                    fontSize: 13, color: MyColor.shadow),
-                              ),
-                              Container(
-                                height: 3,
-                              ),
-                              Text(
-                                'Belum upload',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: MyColor.green),
-                              ),
-                              Container(
-                                height: 5,
-                              ),
-                              SizedBox(
-                                width: 120,
-                                height: 30,
-                                child: ElevatedButton(
-                                  onPressed: () {},
-                                  style: ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll(
-                                          MyColor.merah),
-                                      foregroundColor: MaterialStatePropertyAll(
-                                          MyColor.white),
-                                      shape: MaterialStatePropertyAll(
-                                          RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(7)))),
-                                  child: const Text(
-                                    'Upload bukti',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
                     ],
                   ),
-                ),
-                Container(
-                  height: 56,
                 ),
                 SizedBox(
                   height: 40,

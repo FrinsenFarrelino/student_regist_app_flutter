@@ -261,13 +261,13 @@ class _MyLoginState extends State<MyLogin> {
                             color: MyColor.shadow,
                             blurRadius: 3,
                             spreadRadius: 1,
-                            offset: Offset(0, 2),
+                            offset: const Offset(0, 2),
                           ),
                           BoxShadow(
                             color: MyColor.white,
                             blurRadius: 3,
                             spreadRadius: 1,
-                            offset: Offset(0, -2),
+                            offset: const Offset(0, -2),
                           )
                         ],
                       ),
