@@ -47,6 +47,9 @@ class _MyProfileState extends State<MyProfile> {
           backgroundColor: Colors.green,
         ),
       );
+      setState(() {
+        pickedImage = null;
+      });
     });
   }
 
